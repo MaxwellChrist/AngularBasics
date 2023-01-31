@@ -23,7 +23,12 @@ export class DonutFormComponent {
     if (form.valid) {
       console.log(form.value)
     } else {
-      console.log("invalid")
+      /* 
+        This line below is really only necessary if we don't disable the submit button. Because 
+        someone could go into the dev tools and delete the disabled feature, I'll keep this in
+        just in case
+      */
+      form.form.markAllAsTouched();
     }
   }
 
