@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'donut-form',
@@ -9,7 +10,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./donut-form.component.css']
 })
 export class DonutFormComponent {
-
+  @Output() create = new EventEmitter<Donut>();
   icons: string[] = [
       'chocolate',
       'glazed-fudge',
@@ -21,7 +22,7 @@ export class DonutFormComponent {
   constructor() {};
   handleSubmit(form: NgForm) {
     if (form.valid) {
-      console.log(form.value)
+      this.create.emit(form.value);
     } else {
       /* 
         This line below is really only necessary if we don't disable the submit button. Because 
@@ -31,6 +32,8 @@ export class DonutFormComponent {
       form.form.markAllAsTouched();
     }
   }
+
+
 
     // // Promises
     // const promise = new Promise(resolve => {
