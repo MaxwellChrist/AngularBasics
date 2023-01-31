@@ -19,6 +19,7 @@
             required
             [minlength]="3"
             ngModel
+            [ngModelOptions]="{updateOn: 'blur'}"
             #name="ngModel"
         />
         <ng-container *ngIf="name.invalid && name.touched">
@@ -100,6 +101,7 @@
         </ng-container>
     </label>
     <button type="submit" class="btn btn--add" [disabled]="form.invalid">Create</button>
-
+    <button type="button" class="btn btn--grey" (click)="form.resetForm()">Reset</button>
+    <div class="donut-form-working" *ngIf="form.valid && form.submitted">Working...</div>
     <pre>{{ form.value | json }}</pre>
 </form>
