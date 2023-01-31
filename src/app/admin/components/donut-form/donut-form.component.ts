@@ -20,7 +20,11 @@ export class DonutFormComponent {
   ];
   constructor() {};
   handleSubmit(form: NgForm) {
-    console.log(form.value)
+    if (form.valid) {
+      console.log(form.value)
+    } else {
+      console.log("invalid")
+    }
   }
 
     // // Promises
