@@ -9,7 +9,7 @@
 
     <input ngModel />
 -->
-<form class="donut-form" #form="ngForm">
+<form class="donut-form" (ngSubmit)="handleSubmit(form)" #form="ngForm">
     <label>
         <span>Name</span>
         <input 
@@ -92,6 +92,7 @@
             </textarea>
         </span>
     </label>
+    <button type="submit" class="btn btn--add">Create</button>
 
     <pre>{{ form.value | json }}</pre>
 </form>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -7,8 +8,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './donut-form.component.html',
   styleUrls: ['./donut-form.component.css']
 })
-export class DonutFormComponent implements OnInit{
-  isChecked: boolean = true;
+export class DonutFormComponent {
 
   icons: string[] = [
       'chocolate',
@@ -18,10 +18,10 @@ export class DonutFormComponent implements OnInit{
       'strawberry-glaze',
       'zesty-lemon',
   ];
-  constructor() {
-
+  constructor() {};
+  handleSubmit(form: NgForm) {
+    console.log(form.value)
   }
-  ngOnInit(): void {
 
     // // Promises
     // const promise = new Promise(resolve => {
@@ -58,5 +58,4 @@ export class DonutFormComponent implements OnInit{
     //   filter(res => res === 'this is the obervable 3' || typeof(res) === 'number')
     // )
     // observable.subscribe(result => console.log(result))
-  }
 }
