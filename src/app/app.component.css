@@ -1,0 +1,25 @@
+/* .app {
+  height: 100%;
+} */
+
+
+.app {
+  background: white;
+  border-radius:  8px;
+  max-width: 600px;
+  width: 95%;
+  margin: 25px auto;
+  padding: 25px;
+  border: 4px solid orange;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  width: 200px;
+  height: 150px;
+}

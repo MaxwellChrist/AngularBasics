@@ -1,0 +1,78 @@
+<!-- 
+    This is one way to write the ngIf, else, and then syntax, but this is using
+    a template (inidcated by the "*" because that does the property binding and 
+    creates the template at the same time). So this code is using two templates,
+    one is the card template and one is the nothing template. There's a better
+    way to do this with a more flexible approach
+
+<div>
+    <ng-container *ngIf="donuts.length; then cards; else nothing"></ng-container>
+    <ng-template #cards>
+        <donut-card [donut]="donuts[0]"></donut-card>
+        <donut-card [donut]="donuts[1]"></donut-card>
+        <donut-card [donut]="donuts[2]"></donut-card>
+    </ng-template>
+    <ng-template #nothing>
+        <p>No donuts here...</p>
+    </ng-template>
+</div> 
+-->
+
+
+<!-- 
+    the difference between ng-container and ng-template is that
+    we use the "*" on ngIf with the ng-container, not on the
+    template. Also with the ng-template, we're creating a template
+    to be used at a future time wherease the ng-container, even
+    without any ngIf statement, will render whatever it is containing
+    and therefore is mainly used for grouping elements
+
+    We're also using the ngFor syntax to iterate over our list of donuts
+    which looks much cleaner than our old code. To do so, we need to
+    use the for of loop syntax and bind the donut property to the donut
+    referenced in the for loop. Also, by using the "*" on ngFor, we're 
+    saying that this is the template I want to repeat on every item
+
+    we also added by this property trackBy. What we're doing is saying
+    I want you to track by the trackById, which is a funtion and in
+    that function, it is returning the ID of the donut, meaning we're 
+    tracking the ID of each donut. TrackBy doesn't really do much in
+    the current state of our application, but if we were to have something
+    like buttons to remove certain donuts and add them, this would be
+    very useful for performance (we're basically telling angular what
+    to render each time because deleted donuts will no longer have an ID
+    associated with them and added ones will, causing the program to 
+    render those new or deleted donuts only instead of the entire donut data)
+ -->
+<div>
+    <ng-container *ngIf="donuts.length; else nothing">
+        <donut-card *ngFor="let donut of donuts; trackBy: trackById; index as i" [donut]="donut"></donut-card>
+        <!-- 
+            below are some additional features, like selecting the index of each donut in the
+            for loop and do additional things like pass it down to another component:
+
+        <div *ngFor="let donut of donuts; index as i; odd as o; even as e" [style.color]="o ? 'red' : 'blue'">
+            {{ i + 1}}
+            {{ o }}
+            {{ e }}
+        </div>
+        -->
+
+
+        <!-- 
+            The way line 49 is written is basically translating the code to what's shown below. Both 
+            options work, so it's up to you to pick one. Also, it's important when using this method
+            that ng-template doesn't do anything unless we are suppliying it with a template. Like if
+            we just put "hello, world" inside ng-template tags, nothing gets rendered and the template
+            will be hidden in memory until we use it.
+
+        <ng-template ngFor [ngForOf]="donuts" let-donut let-i="index">
+            <donut-card *ngFor="let donut of donuts; trackBy: trackById" [donut]="donut"></donut-card>
+        </ng-template> 
+    
+        -->
+    </ng-container>
+    <ng-template #nothing>
+        <p>No donuts here...</p>
+    </ng-template>
+</div>

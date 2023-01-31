@@ -1,0 +1,93 @@
+<!-- This line registers our form as an angular form, which behind the scenes 
+    looks for directives and then starts to build a form model in the background:
+
+    #form="ngForm" 
+
+    It creates an overarching object, so that when we use ngModel within the 
+    input, we're binding the content to the ngForm object. The ngModel is
+    used within the input tags as shown below:
+
+    <input ngModel />
+-->
+<form class="donut-form" #form="ngForm">
+    <label>
+        <span>Name</span>
+        <input 
+            type="text"
+            name="name"
+            class="input"
+            required
+            ngModel
+            #name="ngModel"
+        />
+        <p>{{ name.touched }}</p>
+    </label>
+    <label>
+        <span>Icon</span>
+        <select
+            name="icon"
+            class="input input--select"
+            required
+            ngModel
+        >
+            <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
+        </select>
+    </label>
+    <label>
+        <span>Price</span>
+        <input 
+            type="number"
+            name="price"
+            class="input"
+            required
+            ngModel
+        />
+    </label>
+    <div class="donut-form-radios">
+        <p class="donut-form-radios-label">Special: </p>
+        <label>
+            <input 
+                type="radio" 
+                name="released" 
+                value="None" 
+                required
+                ngModel 
+            />
+            <span>None</span>
+        </label>
+        <label>
+            <input 
+                type="radio" 
+                name="released" 
+                value="New" 
+                required
+                ngModel 
+            />
+            <span>New</span>
+        </label>
+        <label>
+            <input 
+                type="radio" 
+                name="released" 
+                value="Limited Edition"
+                required
+                ngModel 
+            />
+            <span>Limited Edition</span>
+        </label>
+    </div>
+
+    <label>
+        <span>Description
+            <textarea 
+                name="description" 
+                class="input input--textarea" 
+                required
+                ngModel
+            >
+            </textarea>
+        </span>
+    </label>
+
+    <pre>{{ form.value | json }}</pre>
+</form>

@@ -1,0 +1,49 @@
+<!-- example of a pipe:  {{ donut | json }} -->
+
+<!-- example of regular style binding: <div class="dount-card" [style.border]="donut.promo ? '5px solid pink' : 'none'"> -->
+
+<!-- example of using  inline styles with ngStyle: <div class="dount-card" [ngStyle]="{
+    border: donut.promo ? '5px solid pink' : 'none',
+    'background-color': donut.promo ? '#F0F0F0' : 'none'
+}"> -->
+
+<!-- example of setting classes with class binding: <div class="dount-card" [class.donut-card-promo]='donut.promo'></div> -->
+
+<!-- 
+    example of setting complex and multiple classes with  ngClass binding is shown below.
+    The reason we prefer this method compared to the regular class binding is that it's 
+    quick, concise, and it's nice and easy to visualize. What this and the regular class
+    bindings are doing is saying the property ('donut-card-promo') is the class to target.
+    Then, the value passed is what's evaluated. So with donut.promo, since it's a boolean 
+    value on each donut, it will only add the class donut-card-promo to donuts with the 
+    donut.promo property marked as true.
+-->
+
+<div class="dount-card" [ngClass]="{'donut-card-promo': donut.promo}">
+    <img src="/assets/img/{{ donut.icon }}.jpg" [alt]="donut.name" class="donut-card-icon" />
+    <div>
+        <p class="donut-card-name">
+            {{ donut.released ? donut.released + " - " + donut.name : donut.name  }} 
+        </p>
+        <p class="donut-card-price">
+            <ng-container [ngSwitch]="donut.promo">
+                <span *ngSwitchCase="true" class="donut-card-label">Sale </span>
+                <!-- 
+                    This is an example of adding a default switch statement with the
+                    ngSwitchDefault decorator
+
+                    <span *ngSwitchDefault class="donut-card-label">No sale currently</span> 
+                -->
+                {{ donut.price / 100 | currency: 'USD' }} 
+            </ng-container>
+            <!-- 
+                The code below does the same as the code in the price section above 
+                without the use of the ngSwitchCase and therefore with no need to 
+                create teplates for each
+
+                <span [ngClass]="{'donut-card-label': donut.promo}">{{ donut.promo ? "Sale" : ""  }} </span>
+                {{ donut.price / 100 | currency: 'USD' }}  
+            -->
+        </p>
+    </div>
+</div>
