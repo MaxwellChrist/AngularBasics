@@ -4,6 +4,6 @@ export interface Donut {
     icon: string;
     price: number;
     promo?: boolean;
-    released?: 'None' | 'New' | 'Limited Edition';
+    released?: 'New' | 'Limited Edition';
     description: string;
 }

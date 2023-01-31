@@ -18,7 +18,7 @@
             class="input"
             required
             [minlength]="3"
-            ngModel
+            [ngModel]="donut.name"
             [ngModelOptions]="{updateOn: 'blur'}"
             #name="ngModel"
         />
@@ -33,7 +33,7 @@
             name="icon"
             class="input input--select"
             required
-            ngModel
+            [ngModel]="donut.icon"
             #icon="ngModel"
         >
             <option *ngFor="let icon of icons" [ngValue]="icon">{{ icon }}</option>
@@ -49,7 +49,7 @@
             name="price"
             class="input"
             required
-            ngModel
+            [ngModel]="donut.price"
             #price="ngModel"
         />
         <ng-container *ngIf="price.invalid && price.touched">
@@ -62,8 +62,8 @@
             <input 
                 type="radio" 
                 name="released" 
-                value="None" 
-                ngModel 
+                [value]="undefined" 
+                [ngModel]="donut.promo" 
             />
             <span>None</span>
         </label>
@@ -72,7 +72,7 @@
                 type="radio" 
                 name="released" 
                 value="New" 
-                ngModel 
+                [ngModel]="donut.promo" 
             />
             <span>New</span>
         </label>
@@ -81,7 +81,7 @@
                 type="radio" 
                 name="released" 
                 value="Limited Edition"
-                ngModel 
+                [ngModel]="donut.promo" 
             />
             <span>Limited Edition</span>
         </label>
@@ -92,7 +92,7 @@
             name="description" 
             class="input input--textarea" 
             required
-            ngModel
+            [ngModel]="donut.description"
             #description="ngModel"
         >
         </textarea>
@@ -104,4 +104,5 @@
     <button type="button" class="btn btn--grey" (click)="form.resetForm()">Reset</button>
     <div class="donut-form-working" *ngIf="form.valid && form.submitted">Working...</div>
     <pre>{{ form.value | json }}</pre>
+    <pre>{{ donut | json }}</pre>
 </form>
