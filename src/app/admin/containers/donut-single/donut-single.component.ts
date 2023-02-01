@@ -8,16 +8,20 @@ import { DonutService } from '../../services/donut.service';
   styleUrls: ['./donut-single.component.css']
 })
 export class DonutSingleComponent implements OnInit{
-  donut!: Donut;
+   donut!: Donut;
    constructor(private donutService: DonutService) {
 
    }
    ngOnInit(): void {
-    const id = '1'
     this.donut = this.donutService.readOne('1');
    }
 
    onCreate(donut: Donut) {
-    console.log('onCreate', donut);
+    // console.log('onCreate', donut);
+    this.donutService.create(donut);
+   }
+
+   onUpdate(donut: Donut) {
+    this.donutService.update(donut);
    }
 }

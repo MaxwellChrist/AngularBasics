@@ -70,4 +70,17 @@ export class DonutService {
     if (donut) return donut;
     return {name: "", icon: "", price: 0, description: ""};
   }
+  create(payload: Donut) {
+    this.donuts = [...this.donuts, payload];
+    console.log(this.donuts);
+  }
+  update(payload: Donut) {
+    this.donuts = this.donuts.map((donut: Donut) => {
+      if (donut.id === payload.id) {
+        return payload;
+      }
+      return donut;
+    });
+    console.log(this.donuts);
+  }
 }
