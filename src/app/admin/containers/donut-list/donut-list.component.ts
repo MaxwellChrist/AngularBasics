@@ -13,7 +13,7 @@ export class DonutListComponent implements OnInit{
 
   // This is where the data gets fetched (within this ngOnInit lifecycle hook)
   ngOnInit(): void {
-    this.donuts = this.donutService.donuts;
+    this.donuts = this.donutService.read();
   }
 
   trackById(index: number, value: Donut) {
