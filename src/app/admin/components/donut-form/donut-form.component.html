@@ -100,9 +100,10 @@
             <div class="donut-form-error" *ngIf="description.errors?.['required']">Description is required</div>
         </ng-container>
     </label>
-    <button type="button" class="btn btn--add" [disabled]="form.invalid" (click)="handleCreate(form)">Create</button>
+    <button type="button" class="btn btn--add" (click)="handleCreate(form)">Create</button>
     <button type="button" class="btn btn--add" [disabled]="form.untouched" (click)="handleUpdate(form)">Update</button>
     <button type="button" class="btn btn--grey" (click)="form.resetForm()">Reset</button>
+    <button type="button" class="btn btn--grey" (click)="handleDelete()">Delete</button>
     <div class="donut-form-working" *ngIf="form.valid && form.submitted">Working...</div>
     <!-- 
         This just shows the data instead of console logging everything all the time: 

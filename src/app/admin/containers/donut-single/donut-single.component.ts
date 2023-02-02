@@ -13,7 +13,7 @@ export class DonutSingleComponent implements OnInit{
 
    }
    ngOnInit(): void {
-    this.donut = this.donutService.readOne('1');
+    this.donut = this.donutService.readOne('0');
    }
 
    onCreate(donut: Donut) {
@@ -23,5 +23,9 @@ export class DonutSingleComponent implements OnInit{
 
    onUpdate(donut: Donut) {
     this.donutService.update(donut);
+   }
+
+   onDelete(donut: Donut) {
+    this.donutService.delete(donut);
    }
 }
